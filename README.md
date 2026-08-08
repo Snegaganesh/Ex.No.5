@@ -363,6 +363,7 @@ Therefore, basic prompts generally produce responses with better quality, accura
 However, a detailed prompt is not always necessary. For simple factual questions, a naïve prompt may provide an equally satisfactory result.
 # 14. Future Enhancements
 <img width="512" height="341" alt="image" src="https://github.com/user-attachments/assets/497b618d-04eb-489b-af33-52746d8e73c3" />
+
 Future versions of the system can include:
 
 Integration with IoT sensors.
