@@ -436,10 +436,10 @@ print(traffic_control("low", True))
 high traffic - green
 medium traffic - green
 emergency priority - green
-
-<img width="513" height="311" alt="image" src="https://github.com/user-attachments/assets/e948bfde-d2ec-41ca-8d86-23e08ed6f19d" />
-
 ~~~
+
+<img width="513" height="311" alt="image" src="https://github.com/user-attachments/assets/e2d587c4-15e5-4e09-bee6-0579de8fae71" />
+
 # 16. Test Cases
 | test case | traffic | emergency | expected result    |
 | --------- | ------- | --------- | ------------------ |
