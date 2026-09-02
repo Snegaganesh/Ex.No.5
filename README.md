@@ -252,127 +252,213 @@ The AI model analyzes the information.
 A structured maintenance report is generated.
 
 The report is stored or displayed on a dashboard.
-# 9. Example Implementation in Python
-## Command Interface
+# 9. Scenario 6: Engineering Problem
+## 9.1 Real-World Scenario
+A busy 4-way city intersection has many vehicles during peak hours. Traffic levels can change on each road.
+
+When an ambulance arrives, fixed-time traffic signals may cause unnecessary delay.
+
+An ai-based smart traffic management system can use cameras to monitor traffic and automatically control signals.
+
+The system should:
+
+detect vehicles using cameras
+calculate traffic density
+classify traffic as low, medium, or high
+detect emergency vehicles
+give emergency vehicles highest priority
+change traffic signals automatically
+return to normal operation after the ambulance passes
+
+## 9.2 Problem Statement
+Develop an ai-based smart traffic management system for a 4-way intersection.
+
+The system should make signal decisions using real-time traffic conditions and emergency vehicle detection.
 ~~~
-class Command:
-    def execute(self):
-        raise NotImplementedError
+emergency vehicle
+        ↓
+  highest priority
+        ↓
+    high traffic
+        ↓
+   medium traffic
+        ↓
+     low traffic
 ~~~
-## Concrete Command
+## 9.3 Naïve Prompt
 ~~~
-class GenerateMaintenanceReport(Command):
-
-    def __init__(self, template, data, llm):
-        self.template = template
-        self.data = data
-        self.llm = llm
-
-    def execute(self):
-        filled_prompt = self.template.format(**self.data)
-        return self.llm.generate(filled_prompt)
+design an ai-based smart traffic system.
 ~~~
-## Receiver – Simulated AI Model
+## 9.4 Expected Output From Naïve Prompt
+The ai may give a simple answer:
 ~~~
-class LLMModel:
-
-    def generate(self, prompt):
-        return f"""
-[Generated Report]
-
-{prompt}
-
-Root Cause: Bearing wear.
-Action: Replace spindle bearing and inspect
-the lubrication system.
-"""
+ai can use cameras to monitor traffic and control traffic signals based on vehicle density.
 ~~~
-# 10. Example Usage
+### observation
+
+The answer is general and does not clearly explain the:
+
+requirements
+architecture
+algorithm
+implementation
+testing
+# 10. Refined Engineering Prompt
 ~~~
-template = """
-Generate a maintenance report for {equipment_name}
-(ID: {equipment_id}).
+act as an ai and embedded systems engineer.
 
-Fault: {fault_description}
-Date: {detection_date}
-"""
+design an ai-based smart traffic management system for a
+4-way urban intersection.
 
-data = {
-    "equipment_name": "CNC Lathe",
-    "equipment_id": "MCH-102",
-    "fault_description": "Spindle overheating",
-    "detection_date": "2025-09-04"
-}
+the system should use cameras to detect vehicles,
+calculate traffic density, and classify traffic as
+low, medium, or high.
 
-llm = LLMModel()
+the system should detect emergency vehicles and give
+them the highest priority.
 
-command = GenerateMaintenanceReport(
-    template,
-    data,
-    llm
-)
+after the emergency vehicle passes, the system should
+return to normal traffic operation.
 
-report = command.execute()
-
-print(report)
+include:
+1. problem definition
+2. requirements
+3. hardware and software
+4. system architecture
+5. working principle
+6. traffic density algorithm
+7. emergency vehicle detection
+8. signal decision algorithm
+9. flowchart
+10. python simulation
+11. test cases
+12. expected results
+13. advantages
+14. limitations
+15. future enhancements
 ~~~
-# 11. Sample Output
+# 11. Expected Output From Refined Prompt
+The refined prompt produces a complete and organized solution.
 ~~~
-[Generated Report]
-
-Generate a maintenance report for CNC Lathe
-(ID: MCH-102).
-
-Fault: Spindle overheating.
-Date: 2025-09-04.
-
-Root Cause: Bearing wear.
-
-Action:
-Replace spindle bearing and inspect the
-lubrication system.
+problem
+   ↓
+requirements
+   ↓
+architecture
+   ↓
+algorithm
+   ↓
+flowchart
+   ↓
+python code
+   ↓
+testing
+   ↓
+documentation
 ~~~
-<img width="1408" height="768" alt="image" src="https://github.com/user-attachments/assets/517d2aae-9bfb-405e-9074-f33c435fbfd0" />
+# 12. System Architecture
+~~~
+traffic camera
+      ↓
+vehicle detection
+      ↓
+vehicle counting
+      ↓
+traffic density
+      ↓
+low / medium / high
+      ↓
+emergency detection
+      ↓
+ai decision
+      ↓
+signal controller
+      ↓
+traffic lights
+~~~
+# 13. Working Principle
+camera captures traffic.
 
-# 12. Overall Comparison
+ai detects vehicles.
 
-| Test Scenario         | Naïve Prompt        | Basic Prompt            | Overall Result |
-| --------------------- | ------------------- | ----------------------- | -------------- |
-| Creative Story        | General             | Structured and creative | Basic better   |
-| Factual Question      | Correct but general | Detailed and focused    | Basic better   |
-| Summarization         | Broad               | Concise and relevant    | Basic better   |
-| Advice                | General suggestions | Step-by-step guidance   | Basic better   |
-| Technical Explanation | General             | Audience-specific       | Basic better   |
-# 13. Analysis
-The experiment shows that the clarity and structure of a prompt directly influence the quality of the generated response.
+vehicle count is calculated.
 
-Naïve prompts are useful when the task is simple and the expected answer is straightforward. However, they may produce responses that are broad, less organized, or inconsistent.
+traffic density is classified.
 
-Basic prompts provide additional information such as:
+emergency vehicles are detected.
 
-Context
-Role or audience
-Specific task
-Expected output
-Length
-Constraints
-Required information
+ai selects the priority road.
 
-Therefore, basic prompts generally produce responses with better quality, accuracy, relevance, organization, and depth.
+traffic signal is changed.
 
-However, a detailed prompt is not always necessary. For simple factual questions, a naïve prompt may provide an equally satisfactory result.
-# 14. Future Enhancements
-<img width="512" height="341" alt="image" src="https://github.com/user-attachments/assets/497b618d-04eb-489b-af33-52746d8e73c3" />
+normal operation resumes after the emergency vehicle passes.
+# 14. Decision Algorithm
+~~~
+detect traffic
+      ↓
+check emergency vehicle
+      ↓
+    yes ─────→ highest priority
+      ↓
+     no
+      ↓
+check traffic density
+      ↓
+high → high priority
+medium → medium priority
+low → low priority
+      ↓
+change traffic signal
+~~~
+# 15. Python Simulation
+~~~
+def traffic_control(density, emergency):
 
-Future versions of the system can include:
+    if emergency:
+        return "emergency priority - green"
 
-Integration with IoT sensors.
-Real-time machine monitoring.
-Predictive maintenance using machine learning.
-Multi-language report generation.
-Automatic graphs and charts.
-# 15. Conclusion
-This experiment demonstrates the importance of effective prompting in obtaining high-quality AI-generated responses. The comparison between naïve and basic prompts shows that clear and refined prompts generally provide more relevant, accurate, structured, and detailed results.
-The integration of Prompt Templating Techniques with the Command Pattern further provides a modular approach for developing AI-based applications such as automated maintenance report generation.
-Thus, effective prompt design combined with software engineering principles can improve the consistency, efficiency, scalability, and usefulness of AI systems.
-# RESULT: The prompt for the above said problem executed successfully
+    elif density == "high":
+        return "high traffic - green"
+
+    elif density == "medium":
+        return "medium traffic - green"
+
+    else:
+        return "low traffic - green"
+
+
+print(traffic_control("high", False))
+print(traffic_control("medium", False))
+print(traffic_control("low", True))
+~~~
+## Expected Output
+~~~
+high traffic - green
+medium traffic - green
+emergency priority - green
+
+<img width="513" height="311" alt="image" src="https://github.com/user-attachments/assets/e948bfde-d2ec-41ca-8d86-23e08ed6f19d" />
+
+~~~
+# 16. Test Cases
+| test case | traffic | emergency | expected result    |
+| --------- | ------- | --------- | ------------------ |
+| tc01      | low     | no        | low priority       |
+| tc02      | medium  | no        | medium priority    |
+| tc03      | high    | no        | high priority      |
+| tc04      | low     | yes       | emergency priority |
+| tc05      | medium  | yes       | emergency priority |
+| tc06      | high    | yes       | emergency priority |
+# 17. Evaluation
+| parameter             | naïve prompt | refined prompt |
+| --------------------- | ------------ | -------------- |
+| problem understanding | basic        | detailed       |
+| requirements          | limited      | clear          |
+| architecture          | missing      | included       |
+| algorithm             | general      | defined        |
+| testing               | missing      | included       |
+| usefulness            | low          | high           |
+# 18. Conclusion
+The experiment shows that prompt design improves the quality of ai-generated engineering solutions. The naïve prompt gives a basic idea, while the refined prompt provides a clear and structured solution for ai-based smart traffic management with emergency vehicle priority.
+# 19. Result 
+**The experiment was successfully completed. The comparison showed that refined prompts provide better-quality and more structured responses than naïve prompts, particularly when solving complex engineering problems.**
